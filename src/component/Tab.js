@@ -34,6 +34,7 @@ export default Tab;
 
 const TabSection = styled.section`
   width: 50%;
+  max-width: 600px;
   height: 250px;
   margin: 10px 10px;
   border: 1px solid #bdbdbd;
