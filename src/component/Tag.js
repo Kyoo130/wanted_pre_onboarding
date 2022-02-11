@@ -68,7 +68,9 @@ const TagSection = styled.section`
 `
 
 const Title = styled.h2`
-  font-weight: bold;
+  text-align: start;
+  font-size: 1rem;
+  margin-left: 1rem;
 `
 
 const TagCont = styled.div`
@@ -78,7 +80,7 @@ const TagCont = styled.div`
   flex-wrap: wrap;
   align-items: center;
   border: 1px solid #bdbdbd;
-  margin: auto;
+  margin: 60px auto;
   overflow-x: hidden;
   overflow-y: auto;
 `

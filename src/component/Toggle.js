@@ -32,14 +32,16 @@ const ToggleCont = styled.section`
 `
 
 const Title = styled.h2`
-  font-weight: bold;
+  text-align: start;
+  font-size: 1rem;
+  margin-left: 1rem;
 `
 
 const Switch = styled.label`
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 60px;
 `
 
 const Check = styled.input`
