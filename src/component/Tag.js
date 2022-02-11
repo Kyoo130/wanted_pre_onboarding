@@ -60,6 +60,7 @@ export default Tag;
 
 const TagSection = styled.section`
   width: 50%;
+  max-width: 600px;
   height: 250px;
   margin: 10px 10px;
   border: 1px solid #bdbdbd;
@@ -94,13 +95,15 @@ const TagItem = styled.div`
   height: 20px;
 `
 
-
 const TagInput = styled.input`
   border: none;
   flex: 1;
   margin: 5px 5px;
   padding: 0.5rem;
   height: 20px;
+  &:focus {
+    outline: none;
+  }
 `
 
 const RemoveBtn = styled.button`

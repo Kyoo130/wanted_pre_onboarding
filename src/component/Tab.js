@@ -53,7 +53,8 @@ const TabBtn = styled.button`
   font-weight: bold;
   border: none;
   width: 30%;
-  height: 50px;
+  height: 40px;
+  cursor: pointer;
 `
 
 const TabContent = styled.p`
