@@ -2,27 +2,33 @@ import React, {useState, useRef, useEffect} from 'react';
 import styled from "styled-components";
 
 const Tag = () => {
-  const [text, setText] = useState([
-    {id: 1, content: "CodeStates"},
-    {id: 2, content: "JJang"},
-  ]);
-
-  const tagRef = useRef(null);
+  const [data, setData] = useState([]);
+  const dataId = useRef(0);
+  const dataTag = useRef(null);
 
   useEffect(() => {
-    tagRef.current.value = "";
-  }, [text]);
+    dataTag.current.value = "";
+  }, [data]);
 
-  const handleAdd = () => {
-    const itemId = text.length + 1;
-    const item = tagRef.current.value;
-    console.log(itemId)
-    setText([...text, {id: itemId, content: item}])
-  };
+  const onCreate = () => {
+    if (dataTag.current.value.length < 1) {
+      alert('한글자 이상 입력해주세요.')
+      return;
+    }
+    const newItem = {id: dataId.current, content: dataTag.current.value}
+    dataId.current += 1;
+    setData([...data, newItem])
+
+  }
+
+  const onDelete = (targetId) => {
+    const newTagItem = data.filter((it) => it.id !== targetId);
+    setData(newTagItem)
+  }
 
   const onKeyPress = e => {
     if (e.key === 'Enter') {
-      handleAdd()
+      onCreate()
     }
   }
 
@@ -31,15 +37,21 @@ const Tag = () => {
       <Title>Tag</Title>
       <TagCont>
         {
-          text.map(tag => <TagItem key={tag.id}>{tag.id}.{tag.content}</TagItem>)
+          data.map((it) => {
+            return (
+              <TagItem key={it.id}>
+                {it.content} <RemoveBtn onClick={()=>{
+                  onDelete(it.id)
+              }}>x</RemoveBtn>
+              </TagItem>
+            )
+          })
         }
 
-        <TagInput type="text" placeholder="Press enter to add tags" ref={tagRef} onKeyPress={onKeyPress} />
+        <TagInput type="text" placeholder="Press enter to add tags" ref={dataTag} onKeyPress={onKeyPress} />
 
 
       </TagCont>
-
-      {/*<button onClick={handleAdd}>추가</button>*/}
     </TagSection>
   );
 };
@@ -61,11 +73,14 @@ const Title = styled.h2`
 
 const TagCont = styled.div`
   width: 80%;
+  max-height: 60%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   border: 1px solid #bdbdbd;
   margin: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 `
 
 const TagItem = styled.div`
@@ -74,10 +89,22 @@ const TagItem = styled.div`
   margin: 5px 5px;
   padding: 0.5rem;
   border-radius: 5px;
+  height: 20px;
 `
 
 
 const TagInput = styled.input`
   border: none;
   flex: 1;
+  margin: 5px 5px;
+  padding: 0.5rem;
+  height: 20px;
+`
+
+const RemoveBtn = styled.button`
+  border: none;
+  background-color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: center;
 `
